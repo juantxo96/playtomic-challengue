@@ -33,6 +33,10 @@ public class Wallet {
         this.balance = BigDecimal.ZERO;
     }
 
+    public void deposit(BigDecimal amount) {
+        this.balance = balance.add(amount);
+    }
+
     @PrePersist
     protected void onCreate() {
         createdAt = ZonedDateTime.now(ZoneOffset.UTC);
