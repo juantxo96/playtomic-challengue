@@ -1,4 +1,4 @@
-package com.playtomic.tests.wallet.infrastructure.external.stripe.stripe;
+package com.playtomic.tests.wallet.infrastructure.external.stripe;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;

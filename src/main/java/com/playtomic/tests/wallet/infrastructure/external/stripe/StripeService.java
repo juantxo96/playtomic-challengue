@@ -1,4 +1,4 @@
-package com.playtomic.tests.wallet.infrastructure.external.stripe.stripe;
+package com.playtomic.tests.wallet.infrastructure.external.stripe;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.playtomic.tests.wallet.domain.payment.Payment;
