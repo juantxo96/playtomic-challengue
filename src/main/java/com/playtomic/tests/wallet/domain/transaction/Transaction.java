@@ -1,5 +1,6 @@
 package com.playtomic.tests.wallet.domain.transaction;
 
+import com.playtomic.tests.wallet.domain.transaction.exception.TransactionAmountTooSmallException;
 import com.playtomic.tests.wallet.domain.wallet.Wallet;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -29,6 +30,8 @@ public class Transaction {
     private Wallet wallet;
 
     public Transaction(Wallet wallet, BigDecimal amount, TransactionType type, TransactionStatus status) {
+        if (amount.compareTo(new BigDecimal("10")) < 0) { throw new TransactionAmountTooSmallException("Amount should be greater than 10"); }
+
         this.amount = amount;
         this.type = type;
         this.status = status;

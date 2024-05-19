@@ -1,5 +1,6 @@
 package com.playtomic.tests.wallet.domain.transaction;
 
+import com.playtomic.tests.wallet.domain.transaction.exception.TransactionAmountTooSmallException;
 import com.playtomic.tests.wallet.domain.wallet.Wallet;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,19 @@ public class TransactionTest {
       Assertions.assertEquals(transaction.getStatus(), transactionStatus);
    }
 
+   @Test
+   public void should_return_exception_when_amount_is_lower_than_allowed() {
+      UUID userId = UUID.randomUUID();
+      String currency = "EUR";
+      Wallet wallet = new Wallet(userId, currency);
+      BigDecimal amount = new BigDecimal("0");
+      TransactionType transactionType = TransactionType.PAYMENT;
+      TransactionStatus transactionStatus = TransactionStatus.PENDING;
+
+      Assertions.assertThrows(TransactionAmountTooSmallException.class, () -> new Transaction(wallet, amount, transactionType, transactionStatus));
+   }
+
+   @Test
    public void should_confirm_transaction() {
       UUID userId = UUID.randomUUID();
       String currency = "EUR";
@@ -42,6 +56,7 @@ public class TransactionTest {
       Assertions.assertEquals(transaction.getStatus(), TransactionStatus.COMPLETED);
    }
 
+   @Test
    public void should_cancel_transaction() {
       UUID userId = UUID.randomUUID();
       String currency = "EUR";
@@ -55,6 +70,5 @@ public class TransactionTest {
       transaction.cancel();
 
       Assertions.assertEquals(transaction.getStatus(), TransactionStatus.CANCELLED);
-
    }
 }
