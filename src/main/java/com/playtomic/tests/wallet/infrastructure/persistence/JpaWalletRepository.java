@@ -1,4 +1,4 @@
-package com.playtomic.tests.wallet.infrastructure.external.persistence;
+package com.playtomic.tests.wallet.infrastructure.persistence;
 
 import com.playtomic.tests.wallet.domain.wallet.Wallet;
 import com.playtomic.tests.wallet.domain.wallet.WalletRepository;

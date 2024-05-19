@@ -1,4 +1,4 @@
-package com.playtomic.tests.wallet.infrastructure.external.persistence;
+package com.playtomic.tests.wallet.infrastructure.persistence;
 
 import com.playtomic.tests.wallet.domain.transaction.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;

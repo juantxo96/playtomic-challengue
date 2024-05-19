@@ -4,7 +4,6 @@ import com.playtomic.tests.wallet.domain.transaction.Transaction;
 import com.playtomic.tests.wallet.domain.transaction.TransactionStatus;
 import com.playtomic.tests.wallet.domain.transaction.TransactionType;
 import com.playtomic.tests.wallet.domain.wallet.Wallet;
-import com.playtomic.tests.wallet.infrastructure.external.persistence.JpaTransactionRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

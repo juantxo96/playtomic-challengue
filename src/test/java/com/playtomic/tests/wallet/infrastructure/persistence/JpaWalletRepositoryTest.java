@@ -1,7 +1,6 @@
 package com.playtomic.tests.wallet.infrastructure.persistence;
 
 import com.playtomic.tests.wallet.domain.wallet.Wallet;
-import com.playtomic.tests.wallet.infrastructure.external.persistence.JpaWalletRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
