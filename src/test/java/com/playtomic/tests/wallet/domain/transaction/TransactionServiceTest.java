@@ -54,12 +54,26 @@ public class TransactionServiceTest {
         Transaction transaction = transactionService.createPayment(wallet, BigDecimal.TEN);
 
         String paymentId = UUID.randomUUID().toString();
-        transactionService.confirmPayment(transaction, paymentId);
+        transactionService.confirmPayment(transaction.getWallet(), transaction, paymentId);
 
         Assertions.assertEquals(transaction.getPaymentId(), paymentId);
         Assertions.assertEquals(transaction.getStatus(), TransactionStatus.COMPLETED);
 
         Transaction savedTransaction = transactionRepository.findById(transaction.getId()).get();
+        Assertions.assertNotNull(savedTransaction);
+        Assertions.assertEquals(savedTransaction, transaction);
+    }
+
+    @Test
+    public void should_cancel_payment_transaction() {
+        Transaction transaction = transactionService.createPayment(wallet, BigDecimal.TEN);
+
+        transactionService.cancelPayment(transaction);
+
+        Assertions.assertEquals(transaction.getStatus(), TransactionStatus.CANCELLED);
+
+        Transaction savedTransaction = transactionRepository.findById(transaction.getId()).get();
+
         Assertions.assertNotNull(savedTransaction);
         Assertions.assertEquals(savedTransaction, transaction);
     }

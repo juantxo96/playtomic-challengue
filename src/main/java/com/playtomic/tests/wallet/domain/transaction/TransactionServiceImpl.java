@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -24,10 +25,16 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Transactional
-    public void confirmPayment(Transaction transaction, String paymentId) {
+    public void confirmPayment(Wallet wallet, Transaction transaction, String paymentId) {
         transaction.confirm(paymentId);
-        walletService.deposit(transaction.getWallet(), transaction.getAmount());
+        walletService.deposit(wallet, transaction.getAmount());
 
+        transactionRepository.save(transaction);
+    }
+
+    @Transactional
+    public void cancelPayment(Transaction transaction) {
+        transaction.cancel();
         transactionRepository.save(transaction);
     }
 }
