@@ -17,17 +17,57 @@ You don't have to write the following operations, but we will discuss possible s
 1. How to spend money from the wallet.
 1. How to refund that money.
 
-The basic structure of a wallet is its identifier and its current balance. If you think you need extra fields, add them. We will discuss it in the interview. 
+## Getting Started
 
-So you can focus on these problems, you have here a maven project with a Spring Boot application. It already contains
-the basic dependencies and an H2 database. There are development and test profiles.
+### Requirements
 
-You can also find an implementation of the service that would call to the real payments platform (StripePaymentService).
-This implementation is calling to a simulator deployed in one of our environments. Take into account
-that this simulator will return 422 http error codes under certain conditions.
+- OpenJDK 17
+- Maven 3.9.6
 
-Consider that this service must work in a microservices environment in high availability. You should care about concurrency too.
+### Running locally
 
-You can spend as much time as you need but we think that 4 hours is enough to show [the requirements of this job.](OFFER.md)
-You don't have to document your code, but you can write down anything you want to explain or anything you have skipped.
-You don't need to write tests for everything, but we would like to see different types of tests.
+1. Install dependencies with `make install`
+2. Run the app with `make start`
+3. Application should be accessible at <http://localhost:8090>
+4. For development purposes as no endpoint is still created to create a wallet, for development profile a default `9f725ab9-77dc-4a0d-ae24-1b0e193ac97c` wallet is created
+
+## Technical description
+
+This is a Springboot application that servers as an API to be able to consult wallet and perform actions to it.
+
+Actually we have 2 entities in this project with the following implementation:
+
+```mermaid
+classDiagram
+    Transaction "1" --> "1..*" Wallet 
+    
+    class Wallet{
+        -UUID id
+        -UUID userId
+        -String currencyCode
+        -BigDecimal balance
+        -Long version
+        -TIMESTAMP createdAt
+        -TIMESTAMP UpdatedAt
+        +deposit(amount)
+    }
+    
+    class Transaction{
+        -UUID id
+        -UUID walletId
+        -String paymentId
+        -BigDecimal amount
+        -INT Status
+        -INT Type
+        -TIMESTAMP createdAt
+        -TIMESTAMP UpdatedAt
+        +confirm()
+        +cancel()
+    }
+```
+
+### Concurrency
+
+This project implements Optimistic Concurrency Control (OCC) to manage concurrent transactions and ensure data integrity without locking resources. OCC is based on the principle that multiple transactions can frequently complete without interfering with each other.
+By using OCC, this project minimizes lock contention and improves performance, providing an efficient and scalable solution for managing concurrent data access.
+
