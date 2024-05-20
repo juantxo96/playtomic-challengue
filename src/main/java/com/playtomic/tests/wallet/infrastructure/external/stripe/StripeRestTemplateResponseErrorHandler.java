@@ -20,5 +20,7 @@ public class StripeRestTemplateResponseErrorHandler implements ResponseErrorHand
         if (response.getStatusCode() == HttpStatus.UNPROCESSABLE_ENTITY) {
             throw new StripeAmountTooSmallException();
         }
+
+        throw new StripeServiceException();
     }
 }

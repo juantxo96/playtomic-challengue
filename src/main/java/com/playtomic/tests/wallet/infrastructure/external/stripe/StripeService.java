@@ -2,6 +2,8 @@ package com.playtomic.tests.wallet.infrastructure.external.stripe;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.playtomic.tests.wallet.domain.payment.Payment;
+import com.playtomic.tests.wallet.domain.payment.PaymentRepository;
+import com.playtomic.tests.wallet.domain.payment.PaymentService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +22,7 @@ import java.net.URI;
  * This dummy implementation throws an error when trying to charge less than 10€.
  */
 @Service
-public class StripeService {
+public class StripeService implements PaymentRepository {
 
     @NonNull
     private URI chargesUri;

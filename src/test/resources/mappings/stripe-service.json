@@ -1,0 +1,44 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "urlPattern": "/v1/stripe-simulator/charges",
+        "bodyPatterns": [
+          { "equalToJson": "{\"credit_card\":\"success_card\", \"amount\":10}" }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "{\"id\": \"e484e055-56ec-40bb-a271-edb6bf0a4d20\", \"amount\": 10}}\"}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "urlPattern": "/v1/stripe-simulator/charges",
+        "bodyPatterns": [
+          { "equalToJson": "{\"credit_card\":\"success_card\", \"amount\":9}" }
+        ]
+      },
+      "response": {
+        "status": 422
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "urlPattern": "/v1/stripe-simulator/charges",
+        "bodyPatterns": [
+          { "equalToJson": "{\"credit_card\":\"internal_server_error\", \"amount\":10}" }
+        ]
+      },
+      "response": {
+        "status": 500
+      }
+    }
+  ]
+}

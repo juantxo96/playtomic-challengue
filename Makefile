@@ -7,6 +7,6 @@ compile:
 install:
 	mvn clean install -DskipTests
 test:
-	mvn test
+	mvn test -Dspring-boot.run.profiles=test
 start:
-	mvn clean spring-boot:run
+	mvn clean spring-boot:run -Dspring-boot.run.profiles=develop
