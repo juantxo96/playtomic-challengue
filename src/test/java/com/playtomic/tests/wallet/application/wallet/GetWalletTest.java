@@ -1,5 +1,6 @@
 package com.playtomic.tests.wallet.application.wallet;
 
+import com.playtomic.tests.wallet.application.wallet.getWallet.WalletDto;
 import com.playtomic.tests.wallet.domain.wallet.Wallet;
 import com.playtomic.tests.wallet.domain.wallet.WalletService;
 import org.junit.jupiter.api.Assertions;

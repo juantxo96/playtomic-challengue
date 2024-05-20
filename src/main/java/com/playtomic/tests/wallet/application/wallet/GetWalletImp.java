@@ -1,5 +1,6 @@
 package com.playtomic.tests.wallet.application.wallet;
 
+import com.playtomic.tests.wallet.application.wallet.getWallet.WalletDto;
 import com.playtomic.tests.wallet.domain.wallet.WalletService;
 import com.playtomic.tests.wallet.domain.wallet.Wallet;
 import org.springframework.stereotype.Service;

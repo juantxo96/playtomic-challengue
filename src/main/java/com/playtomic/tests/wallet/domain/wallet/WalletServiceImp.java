@@ -15,6 +15,10 @@ public class WalletServiceImp implements WalletService {
     }
 
     public Wallet getWallet(UUID id) {
+        /*
+         * Implementing a cache using a service like redis might be a good idea to be able to reduce the calls to the database
+         * For this we should add a logic to update the redis cache on every wallet update
+         */
         return walletRepository.findById(id).orElseThrow(WalletNotFoundException::new);
     }
 

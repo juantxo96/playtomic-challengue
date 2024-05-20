@@ -1,4 +1,4 @@
-package com.playtomic.tests.wallet.application.wallet;
+package com.playtomic.tests.wallet.application.wallet.getWallet;
 
 import com.playtomic.tests.wallet.domain.wallet.Wallet;
 import lombok.Data;
